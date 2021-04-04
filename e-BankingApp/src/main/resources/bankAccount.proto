@@ -1,0 +1,55 @@
+//version of buffer to use
+syntax = "proto3";
+
+//give a number of options 
+option java_multiple_files = true;
+option java_package = "com.michaelbutler.grpc.bankAccount";
+option java_outer_classname = "BankServiceImpl";
+
+package com.michaelbutler.grpc.bankAccount;
+
+service bankService{
+	
+	//specify the RPC
+	//check balance, add funds, withdraw funds
+	rpc accountBalance(accountBalanceRequest) returns (accountBalanceReply){}
+	rpc addWithdrawFunds(addWithdrawFundsRequest) returns (addWithdrawFundsReply){}
+	
+}
+
+//specify messages used from RPC
+
+message accountBalanceRequest{
+
+	string balance = 1; 
+
+}
+
+message accountBalanceReply{
+
+	string rBalance = 1;
+
+}
+
+message addWithdrawFundsRequest{
+
+	float number1 = 1;
+  	float number2 = 2;
+
+  	enum Operation{
+
+	  	ADD = 0;
+	  	WITHDRAW = 1;
+
+  	}
+  	
+  	Operation operation = 3;
+
+}
+
+message addWithdrawFundsReply{
+
+	float newBalance = 1;
+	string message = 2;
+
+}
