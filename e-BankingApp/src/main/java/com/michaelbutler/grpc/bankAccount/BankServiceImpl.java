@@ -46,22 +46,22 @@ public final class BankServiceImpl {
       "\n\021bankAccount.proto\022\"com.michaelbutler.g" +
       "rpc.bankAccount\"(\n\025accountBalanceRequest" +
       "\022\017\n\007balance\030\001 \001(\t\"\'\n\023accountBalanceReply" +
-      "\022\020\n\010rBalance\030\001 \001(\t\"\271\001\n\027addWithdrawFundsR" +
-      "equest\022\017\n\007number1\030\001 \001(\002\022\017\n\007number2\030\002 \001(\002" +
-      "\022X\n\toperation\030\003 \001(\0162E.com.michaelbutler." +
-      "grpc.bankAccount.addWithdrawFundsRequest" +
-      ".Operation\"\"\n\tOperation\022\007\n\003ADD\020\000\022\014\n\010WITH" +
-      "DRAW\020\001\"<\n\025addWithdrawFundsReply\022\022\n\nnewBa" +
-      "lance\030\001 \001(\002\022\017\n\007message\030\002 \001(\t2\245\002\n\013bankSer" +
-      "vice\022\206\001\n\016accountBalance\0229.com.michaelbut" +
-      "ler.grpc.bankAccount.accountBalanceReque" +
-      "st\0327.com.michaelbutler.grpc.bankAccount." +
-      "accountBalanceReply\"\000\022\214\001\n\020addWithdrawFun" +
-      "ds\022;.com.michaelbutler.grpc.bankAccount." +
-      "addWithdrawFundsRequest\0329.com.michaelbut" +
-      "ler.grpc.bankAccount.addWithdrawFundsRep" +
-      "ly\"\000B7\n\"com.michaelbutler.grpc.bankAccou" +
-      "ntB\017BankServiceImplP\001b\006proto3"
+      "\022\020\n\010rBalance\030\001 \001(\t\"\275\001\n\027addWithdrawFundsR" +
+      "equest\022\017\n\007balance\030\001 \001(\002\022\023\n\013transaction\030\002" +
+      " \001(\002\022X\n\toperation\030\003 \001(\0162E.com.michaelbut" +
+      "ler.grpc.bankAccount.addWithdrawFundsReq" +
+      "uest.Operation\"\"\n\tOperation\022\007\n\003ADD\020\000\022\014\n\010" +
+      "WITHDRAW\020\001\"<\n\025addWithdrawFundsReply\022\022\n\nn" +
+      "ewBalance\030\001 \001(\002\022\017\n\007message\030\002 \001(\t2\245\002\n\013ban" +
+      "kService\022\206\001\n\016accountBalance\0229.com.michae" +
+      "lbutler.grpc.bankAccount.accountBalanceR" +
+      "equest\0327.com.michaelbutler.grpc.bankAcco" +
+      "unt.accountBalanceReply\"\000\022\214\001\n\020addWithdra" +
+      "wFunds\022;.com.michaelbutler.grpc.bankAcco" +
+      "unt.addWithdrawFundsRequest\0329.com.michae" +
+      "lbutler.grpc.bankAccount.addWithdrawFund" +
+      "sReply\"\000B7\n\"com.michaelbutler.grpc.bankA" +
+      "ccountB\017BankServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -92,7 +92,7 @@ public final class BankServiceImpl {
     internal_static_com_michaelbutler_grpc_bankAccount_addWithdrawFundsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_michaelbutler_grpc_bankAccount_addWithdrawFundsRequest_descriptor,
-        new java.lang.String[] { "Number1", "Number2", "Operation", });
+        new java.lang.String[] { "Balance", "Transaction", "Operation", });
     internal_static_com_michaelbutler_grpc_bankAccount_addWithdrawFundsReply_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_com_michaelbutler_grpc_bankAccount_addWithdrawFundsReply_fieldAccessorTable = new

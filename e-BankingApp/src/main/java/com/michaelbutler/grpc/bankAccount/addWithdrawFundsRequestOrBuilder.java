@@ -8,14 +8,14 @@ public interface addWithdrawFundsRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>float number1 = 1;</code>
+   * <code>float balance = 1;</code>
    */
-  float getNumber1();
+  float getBalance();
 
   /**
-   * <code>float number2 = 2;</code>
+   * <code>float transaction = 2;</code>
    */
-  float getNumber2();
+  float getTransaction();
 
   /**
    * <code>.com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation operation = 3;</code>

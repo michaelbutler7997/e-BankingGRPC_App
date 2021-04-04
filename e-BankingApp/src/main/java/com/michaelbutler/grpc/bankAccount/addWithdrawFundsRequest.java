@@ -16,8 +16,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private addWithdrawFundsRequest() {
-    number1_ = 0F;
-    number2_ = 0F;
+    balance_ = 0F;
+    transaction_ = 0F;
     operation_ = 0;
   }
 
@@ -47,12 +47,12 @@ private static final long serialVersionUID = 0L;
             break;
           case 13: {
 
-            number1_ = input.readFloat();
+            balance_ = input.readFloat();
             break;
           }
           case 21: {
 
-            number2_ = input.readFloat();
+            transaction_ = input.readFloat();
             break;
           }
           case 24: {
@@ -191,22 +191,22 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(enum_scope:com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation)
   }
 
-  public static final int NUMBER1_FIELD_NUMBER = 1;
-  private float number1_;
+  public static final int BALANCE_FIELD_NUMBER = 1;
+  private float balance_;
   /**
-   * <code>float number1 = 1;</code>
+   * <code>float balance = 1;</code>
    */
-  public float getNumber1() {
-    return number1_;
+  public float getBalance() {
+    return balance_;
   }
 
-  public static final int NUMBER2_FIELD_NUMBER = 2;
-  private float number2_;
+  public static final int TRANSACTION_FIELD_NUMBER = 2;
+  private float transaction_;
   /**
-   * <code>float number2 = 2;</code>
+   * <code>float transaction = 2;</code>
    */
-  public float getNumber2() {
-    return number2_;
+  public float getTransaction() {
+    return transaction_;
   }
 
   public static final int OPERATION_FIELD_NUMBER = 3;
@@ -240,11 +240,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (number1_ != 0F) {
-      output.writeFloat(1, number1_);
+    if (balance_ != 0F) {
+      output.writeFloat(1, balance_);
     }
-    if (number2_ != 0F) {
-      output.writeFloat(2, number2_);
+    if (transaction_ != 0F) {
+      output.writeFloat(2, transaction_);
     }
     if (operation_ != com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation.ADD.getNumber()) {
       output.writeEnum(3, operation_);
@@ -258,13 +258,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (number1_ != 0F) {
+    if (balance_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(1, number1_);
+        .computeFloatSize(1, balance_);
     }
-    if (number2_ != 0F) {
+    if (transaction_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(2, number2_);
+        .computeFloatSize(2, transaction_);
     }
     if (operation_ != com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation.ADD.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
@@ -287,13 +287,13 @@ private static final long serialVersionUID = 0L;
 
     boolean result = true;
     result = result && (
-        java.lang.Float.floatToIntBits(getNumber1())
+        java.lang.Float.floatToIntBits(getBalance())
         == java.lang.Float.floatToIntBits(
-            other.getNumber1()));
+            other.getBalance()));
     result = result && (
-        java.lang.Float.floatToIntBits(getNumber2())
+        java.lang.Float.floatToIntBits(getTransaction())
         == java.lang.Float.floatToIntBits(
-            other.getNumber2()));
+            other.getTransaction()));
     result = result && operation_ == other.operation_;
     result = result && unknownFields.equals(other.unknownFields);
     return result;
@@ -306,12 +306,12 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + NUMBER1_FIELD_NUMBER;
+    hash = (37 * hash) + BALANCE_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getNumber1());
-    hash = (37 * hash) + NUMBER2_FIELD_NUMBER;
+        getBalance());
+    hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getNumber2());
+        getTransaction());
     hash = (37 * hash) + OPERATION_FIELD_NUMBER;
     hash = (53 * hash) + operation_;
     hash = (29 * hash) + unknownFields.hashCode();
@@ -447,9 +447,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      number1_ = 0F;
+      balance_ = 0F;
 
-      number2_ = 0F;
+      transaction_ = 0F;
 
       operation_ = 0;
 
@@ -479,8 +479,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest buildPartial() {
       com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest result = new com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest(this);
-      result.number1_ = number1_;
-      result.number2_ = number2_;
+      result.balance_ = balance_;
+      result.transaction_ = transaction_;
       result.operation_ = operation_;
       onBuilt();
       return result;
@@ -530,11 +530,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest other) {
       if (other == com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.getDefaultInstance()) return this;
-      if (other.getNumber1() != 0F) {
-        setNumber1(other.getNumber1());
+      if (other.getBalance() != 0F) {
+        setBalance(other.getBalance());
       }
-      if (other.getNumber2() != 0F) {
-        setNumber2(other.getNumber2());
+      if (other.getTransaction() != 0F) {
+        setTransaction(other.getTransaction());
       }
       if (other.operation_ != 0) {
         setOperationValue(other.getOperationValue());
@@ -568,54 +568,54 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private float number1_ ;
+    private float balance_ ;
     /**
-     * <code>float number1 = 1;</code>
+     * <code>float balance = 1;</code>
      */
-    public float getNumber1() {
-      return number1_;
+    public float getBalance() {
+      return balance_;
     }
     /**
-     * <code>float number1 = 1;</code>
+     * <code>float balance = 1;</code>
      */
-    public Builder setNumber1(float value) {
+    public Builder setBalance(float value) {
       
-      number1_ = value;
+      balance_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>float number1 = 1;</code>
+     * <code>float balance = 1;</code>
      */
-    public Builder clearNumber1() {
+    public Builder clearBalance() {
       
-      number1_ = 0F;
+      balance_ = 0F;
       onChanged();
       return this;
     }
 
-    private float number2_ ;
+    private float transaction_ ;
     /**
-     * <code>float number2 = 2;</code>
+     * <code>float transaction = 2;</code>
      */
-    public float getNumber2() {
-      return number2_;
+    public float getTransaction() {
+      return transaction_;
     }
     /**
-     * <code>float number2 = 2;</code>
+     * <code>float transaction = 2;</code>
      */
-    public Builder setNumber2(float value) {
+    public Builder setTransaction(float value) {
       
-      number2_ = value;
+      transaction_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>float number2 = 2;</code>
+     * <code>float transaction = 2;</code>
      */
-    public Builder clearNumber2() {
+    public Builder clearTransaction() {
       
-      number2_ = 0F;
+      transaction_ = 0F;
       onChanged();
       return this;
     }
