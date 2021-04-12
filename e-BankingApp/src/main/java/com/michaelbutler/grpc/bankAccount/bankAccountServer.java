@@ -4,9 +4,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
+import java.util.Date;
 import com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation;
 import com.michaelbutler.grpc.bankAccount.bankServiceGrpc.bankServiceImplBase;
 import io.grpc.Server;
@@ -14,6 +17,11 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 public class bankAccountServer extends bankServiceImplBase {
+	
+	private ArrayList<String> allReport=new ArrayList<String>();
+	private ArrayList<String> addReport=new ArrayList<String>();
+	private ArrayList<String> withdrawReport=new ArrayList<String>();
+	private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
 	public static void main(String[] args) {
 		
@@ -124,15 +132,25 @@ private  void registerService(Properties prop) {
 	public void addWithdrawFunds(addWithdrawFundsRequest request,
 			StreamObserver<addWithdrawFundsReply> responseObserver) {
 		
+		Date date = new Date();
 		System.out.println("Transaction is " + "balance: " + request.getBalance() + " " + request.getOperation() );
 
 		float value = Float.NaN;
 		String msg= "ok " + request.getOperation().name() + " result ";
 
-		if(	request.getOperation()== Operation.ADD)
+		if(	request.getOperation()== Operation.ADD) {
 			value = request.getBalance() + request.getTransaction();
-		else if(	request.getOperation()== Operation.WITHDRAW)
+		
+			allReport.add(value + formatter.format(date));
+			addReport.add(value + formatter.format(date));
+		}
+		
+		else if(	request.getOperation()== Operation.WITHDRAW) {
 			value = request.getBalance() - request.getTransaction();
+			
+			allReport.add(formatter.format(date) + "   " +value );
+			withdrawReport.add(formatter.format(date) + "   " +value );
+		}
 			
 		else{
 			value = Float.NaN;
