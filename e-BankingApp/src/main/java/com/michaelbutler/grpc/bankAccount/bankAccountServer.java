@@ -22,6 +22,7 @@ public class bankAccountServer extends bankServiceImplBase {
 	private ArrayList<String> addReport=new ArrayList<String>();
 	private ArrayList<String> withdrawReport=new ArrayList<String>();
 	private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	private int finalBalance;
 
 	public static void main(String[] args) {
 		
@@ -133,32 +134,43 @@ private  void registerService(Properties prop) {
 			StreamObserver<addWithdrawFundsReply> responseObserver) {
 		
 		Date date = new Date();
-		System.out.println("Transaction is " + "balance: " + request.getBalance() + " " + request.getOperation() );
-
-		float value = Float.NaN;
-		String msg= "ok " + request.getOperation().name() + " result ";
-
-		if(	request.getOperation()== Operation.ADD) {
-			value = request.getBalance() + request.getTransaction();
 		
+		int value = 0;
+
+		int balance = request.getBalance();
+		int getTransaction = request.getTransaction();
+		
+		System.out.println(balance);
+		if(	request.getOperation()== Operation.ADD) {
+			balance = balance + getTransaction;
+			
+			System.out.println(value);
+			
 			allReport.add(value + formatter.format(date));
 			addReport.add(value + formatter.format(date));
+			
+			finalBalance = balance + finalBalance;
+			
 		}
 		
-		else if(	request.getOperation()== Operation.WITHDRAW) {
-			value = request.getBalance() - request.getTransaction();
+		else if(request.getOperation()== Operation.WITHDRAW) {
+			balance = balance - getTransaction;
 			
 			allReport.add(formatter.format(date) + "   " +value );
 			withdrawReport.add(formatter.format(date) + "   " +value );
+			
+			finalBalance = finalBalance + balance  ;
 		}
 			
 		else{
-			value = Float.NaN;
-			msg = "no supported/implemented operation";
+			value = 0;
+
 		}		
 
-		addWithdrawFundsReply reply = addWithdrawFundsReply.newBuilder().setNewBalance(value).setMessage(msg).build();
-
+		
+		
+		addWithdrawFundsReply reply = addWithdrawFundsReply.newBuilder().setNewBalance(finalBalance).build();
+		System.out.println(reply);
 		responseObserver.onNext(reply);
 
 		responseObserver.onCompleted();

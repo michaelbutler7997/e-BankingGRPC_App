@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private addWithdrawFundsReply() {
-    newBalance_ = 0F;
+    newBalance_ = 0;
     message_ = "";
   }
 
@@ -44,9 +44,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 13: {
+          case 8: {
 
-            newBalance_ = input.readFloat();
+            newBalance_ = input.readInt32();
             break;
           }
           case 18: {
@@ -88,11 +88,11 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NEWBALANCE_FIELD_NUMBER = 1;
-  private float newBalance_;
+  private int newBalance_;
   /**
-   * <code>float newBalance = 1;</code>
+   * <code>int32 newBalance = 1;</code>
    */
-  public float getNewBalance() {
+  public int getNewBalance() {
     return newBalance_;
   }
 
@@ -144,8 +144,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (newBalance_ != 0F) {
-      output.writeFloat(1, newBalance_);
+    if (newBalance_ != 0) {
+      output.writeInt32(1, newBalance_);
     }
     if (!getMessageBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
@@ -159,9 +159,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (newBalance_ != 0F) {
+    if (newBalance_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(1, newBalance_);
+        .computeInt32Size(1, newBalance_);
     }
     if (!getMessageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
@@ -182,10 +182,8 @@ private static final long serialVersionUID = 0L;
     com.michaelbutler.grpc.bankAccount.addWithdrawFundsReply other = (com.michaelbutler.grpc.bankAccount.addWithdrawFundsReply) obj;
 
     boolean result = true;
-    result = result && (
-        java.lang.Float.floatToIntBits(getNewBalance())
-        == java.lang.Float.floatToIntBits(
-            other.getNewBalance()));
+    result = result && (getNewBalance()
+        == other.getNewBalance());
     result = result && getMessage()
         .equals(other.getMessage());
     result = result && unknownFields.equals(other.unknownFields);
@@ -200,8 +198,7 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NEWBALANCE_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getNewBalance());
+    hash = (53 * hash) + getNewBalance();
     hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
     hash = (53 * hash) + getMessage().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -337,7 +334,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      newBalance_ = 0F;
+      newBalance_ = 0;
 
       message_ = "";
 
@@ -417,7 +414,7 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.michaelbutler.grpc.bankAccount.addWithdrawFundsReply other) {
       if (other == com.michaelbutler.grpc.bankAccount.addWithdrawFundsReply.getDefaultInstance()) return this;
-      if (other.getNewBalance() != 0F) {
+      if (other.getNewBalance() != 0) {
         setNewBalance(other.getNewBalance());
       }
       if (!other.getMessage().isEmpty()) {
@@ -453,28 +450,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private float newBalance_ ;
+    private int newBalance_ ;
     /**
-     * <code>float newBalance = 1;</code>
+     * <code>int32 newBalance = 1;</code>
      */
-    public float getNewBalance() {
+    public int getNewBalance() {
       return newBalance_;
     }
     /**
-     * <code>float newBalance = 1;</code>
+     * <code>int32 newBalance = 1;</code>
      */
-    public Builder setNewBalance(float value) {
+    public Builder setNewBalance(int value) {
       
       newBalance_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>float newBalance = 1;</code>
+     * <code>int32 newBalance = 1;</code>
      */
     public Builder clearNewBalance() {
       
-      newBalance_ = 0F;
+      newBalance_ = 0;
       onChanged();
       return this;
     }

@@ -47,12 +47,12 @@ public final class BankServiceImpl {
       "rpc.bankAccount\"(\n\025accountBalanceRequest" +
       "\022\017\n\007balance\030\001 \001(\t\"\'\n\023accountBalanceReply" +
       "\022\020\n\010rBalance\030\001 \001(\t\"\275\001\n\027addWithdrawFundsR" +
-      "equest\022\017\n\007balance\030\001 \001(\002\022\023\n\013transaction\030\002" +
-      " \001(\002\022X\n\toperation\030\003 \001(\0162E.com.michaelbut" +
+      "equest\022\017\n\007balance\030\001 \001(\005\022\023\n\013transaction\030\002" +
+      " \001(\005\022X\n\toperation\030\003 \001(\0162E.com.michaelbut" +
       "ler.grpc.bankAccount.addWithdrawFundsReq" +
       "uest.Operation\"\"\n\tOperation\022\007\n\003ADD\020\000\022\014\n\010" +
       "WITHDRAW\020\001\"<\n\025addWithdrawFundsReply\022\022\n\nn" +
-      "ewBalance\030\001 \001(\002\022\017\n\007message\030\002 \001(\t2\245\002\n\013ban" +
+      "ewBalance\030\001 \001(\005\022\017\n\007message\030\002 \001(\t2\245\002\n\013ban" +
       "kService\022\206\001\n\016accountBalance\0229.com.michae" +
       "lbutler.grpc.bankAccount.accountBalanceR" +
       "equest\0327.com.michaelbutler.grpc.bankAcco" +

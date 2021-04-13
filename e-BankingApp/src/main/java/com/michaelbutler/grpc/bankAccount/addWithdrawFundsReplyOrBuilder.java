@@ -8,9 +8,9 @@ public interface addWithdrawFundsReplyOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>float newBalance = 1;</code>
+   * <code>int32 newBalance = 1;</code>
    */
-  float getNewBalance();
+  int getNewBalance();
 
   /**
    * <code>string message = 2;</code>
