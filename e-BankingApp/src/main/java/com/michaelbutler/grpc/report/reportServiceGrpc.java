@@ -92,35 +92,35 @@ public final class reportServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.michaelbutler.grpc.report.withdrawReportListRequest,
-      com.michaelbutler.grpc.report.withdrawReportListReply> getWthdrawReportListMethod;
+      com.michaelbutler.grpc.report.withdrawReportListReply> getWithdrawReportListMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "wthdrawReportList",
+      fullMethodName = SERVICE_NAME + '/' + "withdrawReportList",
       requestType = com.michaelbutler.grpc.report.withdrawReportListRequest.class,
       responseType = com.michaelbutler.grpc.report.withdrawReportListReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.michaelbutler.grpc.report.withdrawReportListRequest,
-      com.michaelbutler.grpc.report.withdrawReportListReply> getWthdrawReportListMethod() {
-    io.grpc.MethodDescriptor<com.michaelbutler.grpc.report.withdrawReportListRequest, com.michaelbutler.grpc.report.withdrawReportListReply> getWthdrawReportListMethod;
-    if ((getWthdrawReportListMethod = reportServiceGrpc.getWthdrawReportListMethod) == null) {
+      com.michaelbutler.grpc.report.withdrawReportListReply> getWithdrawReportListMethod() {
+    io.grpc.MethodDescriptor<com.michaelbutler.grpc.report.withdrawReportListRequest, com.michaelbutler.grpc.report.withdrawReportListReply> getWithdrawReportListMethod;
+    if ((getWithdrawReportListMethod = reportServiceGrpc.getWithdrawReportListMethod) == null) {
       synchronized (reportServiceGrpc.class) {
-        if ((getWthdrawReportListMethod = reportServiceGrpc.getWthdrawReportListMethod) == null) {
-          reportServiceGrpc.getWthdrawReportListMethod = getWthdrawReportListMethod = 
+        if ((getWithdrawReportListMethod = reportServiceGrpc.getWithdrawReportListMethod) == null) {
+          reportServiceGrpc.getWithdrawReportListMethod = getWithdrawReportListMethod = 
               io.grpc.MethodDescriptor.<com.michaelbutler.grpc.report.withdrawReportListRequest, com.michaelbutler.grpc.report.withdrawReportListReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "com.michaelbutler.grpc.report.reportService", "wthdrawReportList"))
+                  "com.michaelbutler.grpc.report.reportService", "withdrawReportList"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.michaelbutler.grpc.report.withdrawReportListRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.michaelbutler.grpc.report.withdrawReportListReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new reportServiceMethodDescriptorSupplier("wthdrawReportList"))
+                  .setSchemaDescriptor(new reportServiceMethodDescriptorSupplier("withdrawReportList"))
                   .build();
           }
         }
      }
-     return getWthdrawReportListMethod;
+     return getWithdrawReportListMethod;
   }
 
   /**
@@ -170,9 +170,9 @@ public final class reportServiceGrpc {
 
     /**
      */
-    public void wthdrawReportList(com.michaelbutler.grpc.report.withdrawReportListRequest request,
+    public void withdrawReportList(com.michaelbutler.grpc.report.withdrawReportListRequest request,
         io.grpc.stub.StreamObserver<com.michaelbutler.grpc.report.withdrawReportListReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getWthdrawReportListMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getWithdrawReportListMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -192,12 +192,12 @@ public final class reportServiceGrpc {
                 com.michaelbutler.grpc.report.addReportListReply>(
                   this, METHODID_ADD_REPORT_LIST)))
           .addMethod(
-            getWthdrawReportListMethod(),
+            getWithdrawReportListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.michaelbutler.grpc.report.withdrawReportListRequest,
                 com.michaelbutler.grpc.report.withdrawReportListReply>(
-                  this, METHODID_WTHDRAW_REPORT_LIST)))
+                  this, METHODID_WITHDRAW_REPORT_LIST)))
           .build();
     }
   }
@@ -242,10 +242,10 @@ public final class reportServiceGrpc {
 
     /**
      */
-    public void wthdrawReportList(com.michaelbutler.grpc.report.withdrawReportListRequest request,
+    public void withdrawReportList(com.michaelbutler.grpc.report.withdrawReportListRequest request,
         io.grpc.stub.StreamObserver<com.michaelbutler.grpc.report.withdrawReportListReply> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getWthdrawReportListMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getWithdrawReportListMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -287,9 +287,9 @@ public final class reportServiceGrpc {
 
     /**
      */
-    public com.michaelbutler.grpc.report.withdrawReportListReply wthdrawReportList(com.michaelbutler.grpc.report.withdrawReportListRequest request) {
+    public com.michaelbutler.grpc.report.withdrawReportListReply withdrawReportList(com.michaelbutler.grpc.report.withdrawReportListRequest request) {
       return blockingUnaryCall(
-          getChannel(), getWthdrawReportListMethod(), getCallOptions(), request);
+          getChannel(), getWithdrawReportListMethod(), getCallOptions(), request);
     }
   }
 
@@ -333,16 +333,16 @@ public final class reportServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.michaelbutler.grpc.report.withdrawReportListReply> wthdrawReportList(
+    public com.google.common.util.concurrent.ListenableFuture<com.michaelbutler.grpc.report.withdrawReportListReply> withdrawReportList(
         com.michaelbutler.grpc.report.withdrawReportListRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getWthdrawReportListMethod(), getCallOptions()), request);
+          getChannel().newCall(getWithdrawReportListMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_FULL_REPORT_LIST = 0;
   private static final int METHODID_ADD_REPORT_LIST = 1;
-  private static final int METHODID_WTHDRAW_REPORT_LIST = 2;
+  private static final int METHODID_WITHDRAW_REPORT_LIST = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -369,8 +369,8 @@ public final class reportServiceGrpc {
           serviceImpl.addReportList((com.michaelbutler.grpc.report.addReportListRequest) request,
               (io.grpc.stub.StreamObserver<com.michaelbutler.grpc.report.addReportListReply>) responseObserver);
           break;
-        case METHODID_WTHDRAW_REPORT_LIST:
-          serviceImpl.wthdrawReportList((com.michaelbutler.grpc.report.withdrawReportListRequest) request,
+        case METHODID_WITHDRAW_REPORT_LIST:
+          serviceImpl.withdrawReportList((com.michaelbutler.grpc.report.withdrawReportListRequest) request,
               (io.grpc.stub.StreamObserver<com.michaelbutler.grpc.report.withdrawReportListReply>) responseObserver);
           break;
         default:
@@ -436,7 +436,7 @@ public final class reportServiceGrpc {
               .setSchemaDescriptor(new reportServiceFileDescriptorSupplier())
               .addMethod(getFullReportListMethod())
               .addMethod(getAddReportListMethod())
-              .addMethod(getWthdrawReportListMethod())
+              .addMethod(getWithdrawReportListMethod())
               .build();
         }
       }

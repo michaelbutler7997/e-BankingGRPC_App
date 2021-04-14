@@ -4,17 +4,25 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
-import com.michaelbutler.grpc.report.reportServiceGrpc.reportServiceImplBase;;
+
+import com.michaelbutler.grpc.bankAccount.bankAccountServer;
+import com.michaelbutler.grpc.report.reportServiceGrpc.reportServiceImplBase;
+
+import ClientGUI.AccountGUI;
+import ClientGUI.reportHelper;;
 
 public class reportServer extends reportServiceImplBase{
-
+	
 	public static void main(String[] args) {
+		
 		
 		reportServer rServer = new reportServer();
 
@@ -109,10 +117,16 @@ public class reportServer extends reportServiceImplBase{
 	public void fullReportList(fullReportListRequest request,
 	        StreamObserver<fullReportListReply> responseObserver) {
 		
+		String allReports = request.getReport();
+		
+		fullReportListReply reply = fullReportListReply.newBuilder().setRReport(allReports).build();
+		
 		System.out.println("Receiving Full Report Request" + request.getReport());
-		fullReportListReply reply = fullReportListReply.newBuilder().setRReport("Full Report Test" + request.getReport()).build();
+		
+		System.out.println("This is the reply"+reply);
 		
 		responseObserver.onNext(reply);
+	
 		//Server notifies that it has completed processing 
 		responseObserver.onCompleted();
 		
@@ -121,22 +135,34 @@ public class reportServer extends reportServiceImplBase{
 	public void addReportList(addReportListRequest request,
 	        StreamObserver<addReportListReply> responseObserver) {
 		
-		System.out.println("Receiving Deposit Report Request" + request.getReport());
-		addReportListReply reply = addReportListReply.newBuilder().setRReport("Deposit Report Test" + request.getReport()).build();
+		String addReports = request.getReport();
+		
+		addReportListReply reply = addReportListReply.newBuilder().setRReport(addReports).build();
+		
+		System.out.println("Receiving Add Report Request" + request.getReport());
+		
+		System.out.println("This is the reply"+reply);
 		
 		responseObserver.onNext(reply);
+	
 		//Server notifies that it has completed processing 
 		responseObserver.onCompleted();
 		
 	}
 	
-	public void wthdrawReportList(withdrawReportListRequest request,
+	public void withdrawReportList(withdrawReportListRequest request,
 	        StreamObserver<withdrawReportListReply> responseObserver) {
 		
-		System.out.println("Receiving Withdrawal Report Request" + request.getReport());
-		withdrawReportListReply reply = withdrawReportListReply.newBuilder().setRReport("Withdrawal Report Test" + request.getReport()).build();
+		String withdrawReports = request.getReport();
+		
+		withdrawReportListReply reply = withdrawReportListReply.newBuilder().setRReport(withdrawReports).build();
+		
+		System.out.println("Receiving Withdraw Report Request" + request.getReport());
+		
+		System.out.println("This is the reply"+reply);
 		
 		responseObserver.onNext(reply);
+	
 		//Server notifies that it has completed processing 
 		responseObserver.onCompleted();
 		

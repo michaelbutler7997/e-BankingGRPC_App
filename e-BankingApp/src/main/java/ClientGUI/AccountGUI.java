@@ -19,6 +19,8 @@ import com.michaelbutler.grpc.bankAccount.bankServiceGrpc.bankServiceBlockingStu
 import com.michaelbutler.grpc.bankAccount.bankServiceGrpc.bankServiceStub;
 
 import com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation;
+import com.michaelbutler.grpc.bankAccount.bankAccountServer;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -30,6 +32,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class AccountGUI extends JDialog {
@@ -44,6 +50,16 @@ public class AccountGUI extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField balance;
 	private JTextField amount;
+	
+	public  ArrayList<String> allReport=new ArrayList<String>();
+	public  ArrayList<String> addReport=new ArrayList<String>();
+	public  ArrayList<String> withdrawReport=new ArrayList<String>();
+	
+	public  ArrayList<String> oldAllReport=new ArrayList<String>();
+	public  ArrayList<String> oldAddReport=new ArrayList<String>();
+	public  ArrayList<String> oldWithdrawReport=new ArrayList<String>();
+	
+	public SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
 	/**
 	 * Launch the application.
@@ -140,8 +156,6 @@ private void discoverAccountService(String service_type) {
 	
 }
 	
-	
-
 	/**
 	 * Create the dialog.
 	 * @return 
@@ -184,10 +198,10 @@ private void discoverAccountService(String service_type) {
 				public void actionPerformed(ActionEvent e) {
 					
 					//deposits money to the account 
-					
 					int num1 = req.getBalance();
 					String strNum2 = amount.getText();
-
+					Date date = new Date();
+					
 					if(!strNum2.matches("[0-9]+")) {
 						JOptionPane.showMessageDialog(null, "Invalid number, please try again");
 					}
@@ -195,12 +209,19 @@ private void discoverAccountService(String service_type) {
 						int num2 = Integer.parseInt(strNum2);
 						int index = 0;
 						Operation operation = Operation.forNumber(index);
+						System.out.println(operation);
 						
 						addWithdrawFundsRequest req = addWithdrawFundsRequest.newBuilder().setBalance(num1).setTransaction(num2).setOperation(operation).build();
 	
 						addWithdrawFundsReply response = blockingStub.addWithdrawFunds(req);
 	
 						String newBalance = Integer.toString(response.getNewBalance());
+						
+						allReport.add(formatter.format(date) +"____Transaction:"+" " +num2 +"," );
+						addReport.add(formatter.format(date) +"____Transaction:"+" " +num2 +"," );
+						
+						System.out.println("all reports this is: "+ allReport);
+						System.out.println("Add reports this is: "+ addReport);
 						
 						balance.setText(newBalance);
 						amount.setText(null);
@@ -219,6 +240,7 @@ private void discoverAccountService(String service_type) {
 					//withdraws from account
 					int num1 = req.getBalance();
 					String strNum2 = amount.getText();
+					Date date = new Date();
 					
 					if(!strNum2.matches("[0-9]+")) {
 						JOptionPane.showMessageDialog(null, "Invalid number, please try again");
@@ -234,6 +256,13 @@ private void discoverAccountService(String service_type) {
 	
 						String newBalance = Integer.toString(response.getNewBalance());
 						
+						
+						allReport.add(formatter.format(date) + "____Transaction:"+" -" +num2+"," );
+						withdrawReport.add(formatter.format(date) + "____Transaction:"+" -" +num2 +"," );
+						
+						System.out.println("all reports this is: "+ allReport);
+						System.out.println("W reports this is: "+ withdrawReport);
+						
 						balance.setText(newBalance);
 						amount.setText(null);
 						
@@ -242,6 +271,19 @@ private void discoverAccountService(String service_type) {
 					
 				}
 			});
+			
+			//updating arraylists so that they dnt't keep getting overwritten
+			oldAllReport = reportHelper.getAllReport();
+			allReport.addAll(oldAllReport);
+			oldAddReport = reportHelper.getAddReport();
+			addReport.addAll(oldAddReport);
+			oldWithdrawReport = reportHelper.getWithdrawReport();
+			withdrawReport.addAll(oldWithdrawReport);
+			
+			reportHelper.setAllReport(allReport);
+			reportHelper.setAddReport(addReport);
+			reportHelper.setWithdrawReport(withdrawReport);
+
 			contentPanel.add(btnNewButton_1);
 		}
 		{

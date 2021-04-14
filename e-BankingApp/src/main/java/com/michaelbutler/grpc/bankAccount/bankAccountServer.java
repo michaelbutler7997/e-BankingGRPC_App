@@ -10,6 +10,8 @@ import java.util.Properties;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 import java.util.Date;
+import java.util.List;
+
 import com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation;
 import com.michaelbutler.grpc.bankAccount.bankServiceGrpc.bankServiceImplBase;
 import io.grpc.Server;
@@ -18,11 +20,7 @@ import io.grpc.stub.StreamObserver;
 
 public class bankAccountServer extends bankServiceImplBase {
 	
-	private ArrayList<String> allReport=new ArrayList<String>();
-	private ArrayList<String> addReport=new ArrayList<String>();
-	private ArrayList<String> withdrawReport=new ArrayList<String>();
-	private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-	private int finalBalance;
+	public int finalBalance;
 
 	public static void main(String[] args) {
 		
@@ -122,7 +120,7 @@ private  void registerService(Properties prop) {
 	        StreamObserver<accountBalanceReply> responseObserver) {
 	
 	System.out.println("Receiving Balance Request" + request.getBalance());
-	accountBalanceReply reply = accountBalanceReply.newBuilder().setRBalance("Balance Request Test" + request.getBalance()).build();
+	accountBalanceReply reply = accountBalanceReply.newBuilder().setRBalance(request.getBalance()).build();
 	
 	responseObserver.onNext(reply);
 	//Server notifies that it has completed processing 
@@ -132,10 +130,6 @@ private  void registerService(Properties prop) {
 
 	public void addWithdrawFunds(addWithdrawFundsRequest request,
 			StreamObserver<addWithdrawFundsReply> responseObserver) {
-		
-		Date date = new Date();
-		
-		int value = 0;
 
 		int balance = request.getBalance();
 		int getTransaction = request.getTransaction();
@@ -144,10 +138,6 @@ private  void registerService(Properties prop) {
 		if(	request.getOperation()== Operation.ADD) {
 			balance = balance + getTransaction;
 			
-			System.out.println(value);
-			
-			allReport.add(value + formatter.format(date));
-			addReport.add(value + formatter.format(date));
 			
 			finalBalance = balance + finalBalance;
 			
@@ -156,24 +146,25 @@ private  void registerService(Properties prop) {
 		else if(request.getOperation()== Operation.WITHDRAW) {
 			balance = balance - getTransaction;
 			
-			allReport.add(formatter.format(date) + "   " +value );
-			withdrawReport.add(formatter.format(date) + "   " +value );
-			
-			finalBalance = finalBalance + balance  ;
+			finalBalance = finalBalance + balance;
 		}
 			
 		else{
-			value = 0;
+			balance = 0;
 
 		}		
 
 		
-		
 		addWithdrawFundsReply reply = addWithdrawFundsReply.newBuilder().setNewBalance(finalBalance).build();
-		System.out.println(reply);
+		
+		System.out.println("this is reply   "+reply);
 		responseObserver.onNext(reply);
 
 		responseObserver.onCompleted();
+	}
+	
+	public int getfBalance() {
+	       return finalBalance;
 	}
 		
 }

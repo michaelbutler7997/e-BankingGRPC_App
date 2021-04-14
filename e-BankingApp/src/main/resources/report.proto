@@ -14,7 +14,7 @@ service reportService{
 	//check balance, add funds, withdraw funds
 	rpc fullReportList(fullReportListRequest) returns (fullReportListReply){}
 	rpc addReportList(addReportListRequest) returns (addReportListReply){}
-	rpc wthdrawReportList(withdrawReportListRequest) returns (withdrawReportListReply){}
+	rpc withdrawReportList(withdrawReportListRequest) returns (withdrawReportListReply){}
 	
 }
 
@@ -22,13 +22,14 @@ service reportService{
 
 message fullReportListRequest{
 
-	string report = 1; 
+	 string report = 1; 
+	
 
 }
 
 message fullReportListReply{
 
-	string rReport = 1;
+	 string rReport = 1;
 
 }
 
