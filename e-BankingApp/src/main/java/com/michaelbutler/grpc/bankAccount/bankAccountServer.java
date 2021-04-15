@@ -84,7 +84,7 @@ private  void registerService(Properties prop) {
 	 try {
            // Create a JmDNS instance
            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-           
+           System.out.println(InetAddress.getLocalHost());
            String service_type = prop.getProperty("service_type") ;//"_http._tcp.local.";
            String service_name = prop.getProperty("service_name")  ;// "example";
           // int service_port = 1234;
@@ -161,10 +161,6 @@ private  void registerService(Properties prop) {
 		responseObserver.onNext(reply);
 
 		responseObserver.onCompleted();
-	}
-	
-	public int getfBalance() {
-	       return finalBalance;
 	}
 		
 }

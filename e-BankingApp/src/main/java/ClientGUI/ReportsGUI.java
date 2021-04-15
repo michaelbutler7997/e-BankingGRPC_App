@@ -26,7 +26,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import javax.swing.JList;
-
+import ClientGUI.reportHelper;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -158,6 +158,7 @@ public ReportsGUI() {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
+
 				JButton btnNewButton_2 = new JButton("All Reports");
 				btnNewButton_2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -192,9 +193,9 @@ public ReportsGUI() {
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						//for getting all deposits
+						//
 						String reqAsString = String.join(",", req2);
-						//for getting all deposits and withdrawals from the account 
+						
 						System.out.println("printing arraylist  "+req2);
 	
 						addReportListRequest gimme = addReportListRequest.newBuilder().setReport(reqAsString).build();
@@ -205,9 +206,7 @@ public ReportsGUI() {
 						System.out.println("As String******"+ strAddReports);
 						
 						serverAddReports = new ArrayList<String>(Arrays.asList(strAddReports.split(",")));
-						
-						
-						System.out.println("ADD REPORT******"+serverAddReports);
+
 						index = 2;
 						initialize();
 					}
@@ -219,9 +218,9 @@ public ReportsGUI() {
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						//for getting all withdrawals
+						
 						String reqAsString = String.join(",", req3);
-						//for getting all deposits and withdrawals from the account 
+						
 						System.out.println("printing arraylist  "+req3);
 	
 						withdrawReportListRequest gimme = withdrawReportListRequest.newBuilder().setReport(reqAsString).build();

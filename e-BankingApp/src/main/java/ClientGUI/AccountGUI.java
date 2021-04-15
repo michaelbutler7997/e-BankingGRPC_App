@@ -19,7 +19,7 @@ import com.michaelbutler.grpc.bankAccount.bankServiceGrpc.bankServiceBlockingStu
 import com.michaelbutler.grpc.bankAccount.bankServiceGrpc.bankServiceStub;
 
 import com.michaelbutler.grpc.bankAccount.addWithdrawFundsRequest.Operation;
-import com.michaelbutler.grpc.bankAccount.bankAccountServer;
+import ClientGUI.reportHelper;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -40,8 +40,6 @@ import java.awt.event.ActionEvent;
 
 public class AccountGUI extends JDialog {
 
-	
-	
 	private static bankServiceBlockingStub blockingStub;
 	private static bankServiceStub asyncStub;
 
@@ -59,6 +57,7 @@ public class AccountGUI extends JDialog {
 	public  ArrayList<String> oldAddReport=new ArrayList<String>();
 	public  ArrayList<String> oldWithdrawReport=new ArrayList<String>();
 	
+	private String df = paymentHelper.getDate();
 	public SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
 	/**
@@ -197,11 +196,11 @@ private void discoverAccountService(String service_type) {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					//deposits money to the account 
+					//get variables for deposit money to the account 
 					int num1 = req.getBalance();
 					String strNum2 = amount.getText();
 					Date date = new Date();
-					
+					//user validation
 					if(!strNum2.matches("[0-9]+")) {
 						JOptionPane.showMessageDialog(null, "Invalid number, please try again");
 					}
@@ -210,18 +209,24 @@ private void discoverAccountService(String service_type) {
 						int index = 0;
 						Operation operation = Operation.forNumber(index);
 						System.out.println(operation);
-						
+							
+						//checks todays date to see if a payment comes out today 
+						if(df!=null) {
+							String formatted = df.formatted(new Date());
+							if(df.equals(formatted)&&df!=null) {
+								num1 = num1-paymentHelper.getAmount();
+							}
+						}
+						//sends request
 						addWithdrawFundsRequest req = addWithdrawFundsRequest.newBuilder().setBalance(num1).setTransaction(num2).setOperation(operation).build();
-	
+						//receives response
 						addWithdrawFundsReply response = blockingStub.addWithdrawFunds(req);
-	
+						//gets new balance to update the balance number
 						String newBalance = Integer.toString(response.getNewBalance());
 						
+						//adds to the report 
 						allReport.add(formatter.format(date) +"____Transaction:"+" " +num2 +"," );
 						addReport.add(formatter.format(date) +"____Transaction:"+" " +num2 +"," );
-						
-						System.out.println("all reports this is: "+ allReport);
-						System.out.println("Add reports this is: "+ addReport);
 						
 						balance.setText(newBalance);
 						amount.setText(null);
@@ -242,6 +247,17 @@ private void discoverAccountService(String service_type) {
 					String strNum2 = amount.getText();
 					Date date = new Date();
 					
+					
+					if(df!=null) {
+						String formatted = df.formatted(new Date());
+						if(df.equals(formatted)&&df!=null) {
+							num1 = num1-paymentHelper.getAmount();
+						}
+					}
+					//checks todays date to see if a payment comes out today 
+					
+					
+					//user validation
 					if(!strNum2.matches("[0-9]+")) {
 						JOptionPane.showMessageDialog(null, "Invalid number, please try again");
 					}
@@ -250,19 +266,20 @@ private void discoverAccountService(String service_type) {
 						int index = 1;
 						Operation operation = Operation.forNumber(index);
 						
+						//sends request
 						addWithdrawFundsRequest req = addWithdrawFundsRequest.newBuilder().setBalance(num1).setTransaction(num2).setOperation(operation).build();
-	
+						//receives reply
 						addWithdrawFundsReply response = blockingStub.addWithdrawFunds(req);
-	
+						//gets value to update field
 						String newBalance = Integer.toString(response.getNewBalance());
 						
-						
+						//adds to reports
 						allReport.add(formatter.format(date) + "____Transaction:"+" -" +num2+"," );
 						withdrawReport.add(formatter.format(date) + "____Transaction:"+" -" +num2 +"," );
 						
 						System.out.println("all reports this is: "+ allReport);
 						System.out.println("W reports this is: "+ withdrawReport);
-						
+						//updates fields
 						balance.setText(newBalance);
 						amount.setText(null);
 						
@@ -280,6 +297,7 @@ private void discoverAccountService(String service_type) {
 			oldWithdrawReport = reportHelper.getWithdrawReport();
 			withdrawReport.addAll(oldWithdrawReport);
 			
+			//set updated arraylists
 			reportHelper.setAllReport(allReport);
 			reportHelper.setAddReport(addReport);
 			reportHelper.setWithdrawReport(withdrawReport);
